@@ -46,47 +46,24 @@ end
 row1 = Array.new(4) {output}
 row2 = Array.new(4) {output}
 row3 = Array.new(4) {output}
+finalrow = row1.concat(row2).concat(row3)
 
 puts row1.join(', '),row2.join(', '),row3.join(', ')
 
-def final(result1,result2,result3)
+def final(result)
 
-result1.each do |t|		
-	if t.include?('.')
-		puts t + ' - real numbers'
-	elsif t[/[a-z]/] && t[/\d/]
-		puts t + ' - alphanumeric'
-	elsif t[/[a-z]/]
-		puts t + ' - alphabetical strings'
-	elsif t[/\d/]
-		puts t + ' - integer'
-	end				
-end
-
-result2.each do |t|		
-	if t.include?('.')
-		puts t + ' - real numbers'
-	elsif t[/[a-z]/] && t[/\d/]
-		puts t + ' - alphanumeric'
-	elsif t[/[a-z]/]
-		puts t + ' - alphabetical strings'
-	elsif t[/\d/]
-		puts t + ' - integer'
-	end				
-end
-
-result3.each do |t|		
-	if t.include?('.')
-		puts t + ' - real numbers'
-	elsif t[/[a-z]/] && t[/\d/]
-		puts t + ' - alphanumeric'
-	elsif t[/[a-z]/]
-		puts t + ' - alphabetical strings'
-	elsif t[/\d/]
-		puts t + ' - integer'
-	end				
-end
+	result.each do |t|		
+		if t.include?('.')
+			puts t + ' - real numbers'
+		elsif t[/[a-z]/] && t[/\d/]
+			puts t + ' - alphanumeric'
+		elsif t[/[a-z]/]
+			puts t + ' - alphabetical strings'
+		elsif t[/\d/]
+			puts t + ' - integer'
+		end				
+	end
 
 end
 
-final(row1,row2,row3)
+final(finalrow)
