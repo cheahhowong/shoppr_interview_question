@@ -90,9 +90,3 @@ end
 end
 
 final(row1,row2,row3)
-
-# f = File.new('out.txt', 'w')
-# f.write(row1)
-# f.write(row2)
-# f.write(row3)
-# f.close
