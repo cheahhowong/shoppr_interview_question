@@ -22,10 +22,10 @@ def generate_real_numbers(number)
 	d = b.concat(a).concat(c)
 	numofsymbol = d.count('.')
 
-	if (d.include?(".") && numofsymbol == 1)
-		d
-	else
+	if (d.include?(".") && numofsymbol > 1)
 		generate_real_numbers(number)
+	elsif (d.include?(".") && numofsymbol == 1)
+		d
 	end
 end
 
@@ -43,27 +43,20 @@ def output
 	end		
 end
 
-row1 = Array.new(4) {output}
-row2 = Array.new(4) {output}
-row3 = Array.new(4) {output}
-finalrow = row1.concat(row2).concat(row3)
-
-puts row1.join(', '),row2.join(', '),row3.join(', ')
-
-def final(result)
-
-	result.each do |t|		
-		if t.include?('.')
-			puts t + ' - real numbers'
-		elsif t[/[a-z]/] && t[/\d/]
-			puts t + ' - alphanumeric'
-		elsif t[/[a-z]/]
-			puts t + ' - alphabetical strings'
-		elsif t[/\d/]
-			puts t + ' - integer'
-		end				
+def calculate_file_size
+	i = 0
+	while i <= 100
+		row = Array.new(4) {output}
+		count = row.join(', ').length
+		i += count
+		my_file = File.new("result.txt","a")
+		my_file.write(row.join(", "))
+		my_file.close
 	end
 
 end
 
-final(finalrow)
+calculate_file_size
+
+
+
