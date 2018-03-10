@@ -9,13 +9,16 @@ def generate_integer(number)
 end
 
 def generate_alphanumeric(number)
-	charset = Array(0..9) + Array('a'..'z')
-	Array.new(number) { charset.sample }.join
+	char = Array('a'..'z') + Array(0..9)
+	Array.new(number) { char.sample }.join
 end
 
 def generate_real_numbers(number)
+	condition = true
 	charset = Array(0..9) + Array('.')
 	alpha = Array(1..9)
+
+	while condition == true
 	a = Array.new(number) { charset.sample }.join
 	b = Array.new(1) { alpha.sample }.join
 	c = Array.new(1) { alpha.sample }.join
@@ -23,9 +26,12 @@ def generate_real_numbers(number)
 	numofsymbol = d.count('.')
 
 	if (d.include?(".") && numofsymbol > 1)
-		generate_real_numbers(number)
+		condition = true
 	elsif (d.include?(".") && numofsymbol == 1)
-		d
+		return d
+		condition = false
+	end
+
 	end
 end
 
@@ -45,13 +51,22 @@ end
 
 def calculate_file_size
 	i = 0
-	while i <= 100
-		row = Array.new(4) {output}
-		count = row.join(', ').length
-		i += count
+	while i <= 10000000
+		row = Array.new(1) {output}
+		
 		my_file = File.new("result.txt","a")
-		my_file.write(row.join(", "))
-		my_file.close
+
+		if File.size?('result.txt')
+			my_file.write(", #{row[0]}")
+			count = row[0].length + 2
+			i += count
+			my_file.close
+		else
+			my_file.write(row.join(", "))
+			count = row[0].length
+			i += count
+			my_file.close
+		end
 	end
 
 end
